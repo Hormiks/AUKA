@@ -1,0 +1,64 @@
+{% extends "site_base.html" %}
+{% block title %}Catálogo | AUKA{% endblock %}
+
+{% block content %}
+<section class="bg-gradient-to-br from-green-50 to-emerald-50 py-16 px-4">
+  <div class="max-w-7xl mx-auto">
+    <h1 class="text-4xl text-green-800 mb-3">Catálogo</h1>
+    <p class="text-gray-700">Productos creados con cariño, naturaleza y consciencia.</p>
+  </div>
+</section>
+
+<section class="py-14 px-4 bg-white">
+  <div class="max-w-7xl mx-auto">
+    {% if productos %}
+      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        {% for p in productos %}
+          <article class="rounded-2xl border border-green-100 overflow-hidden shadow-sm hover:shadow-md transition-shadow bg-white">
+            {% if p.imagen %}
+              <img class="w-full h-52 object-cover" src="{{ p.imagen.url }}" alt="{{ p.nombre }}">
+            {% else %}
+              <div class="w-full h-52 bg-green-50 flex items-center justify-center text-green-700">Sin imagen</div>
+            {% endif %}
+
+            <div class="p-6">
+              <div class="flex items-start justify-between gap-3">
+                <h2 class="text-green-800 font-medium text-lg">{{ p.nombre }}</h2>
+                <span class="text-green-700 font-semibold whitespace-nowrap">
+                  ${{ p.precio }}
+                </span>
+              </div>
+
+              <p class="text-sm text-gray-600 mt-2">
+                {{ p.descripcion|truncatechars:140 }}
+              </p>
+
+              {% if p.temporadas %}
+                <div class="mt-4 flex flex-wrap gap-2">
+                  {% for t in p.temporadas %}
+                    <span class="text-xs rounded-full bg-green-50 border border-green-100 px-3 py-1 text-green-700">
+                      {{ t }}
+                    </span>
+                  {% endfor %}
+                </div>
+              {% endif %}
+
+              <div class="mt-6">
+                <a class="inline-flex items-center justify-center rounded-md px-4 py-2 bg-green-600 text-white hover:bg-green-700 transition-colors w-full"
+                   href="https://wa.me/56912345678?text=Hola%20AUKA!%20Quiero%20consultar%20por:%20{{ p.nombre|urlencode }}"
+                   target="_blank" rel="noopener noreferrer">
+                  Solicitar por WhatsApp
+                </a>
+              </div>
+            </div>
+          </article>
+        {% endfor %}
+      </div>
+    {% else %}
+      <div class="rounded-2xl border border-green-100 bg-green-50 p-8 text-gray-700">
+        Aún no hay productos activos en el catálogo.
+      </div>
+    {% endif %}
+  </div>
+</section>
+{% endblock %}

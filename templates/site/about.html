@@ -1,0 +1,38 @@
+{% extends "site_base.html" %}
+{% block title %}Quiénes Somos | AUKA{% endblock %}
+
+{% block content %}
+<section class="bg-gradient-to-br from-green-50 to-emerald-50 py-20 px-4">
+  <div class="max-w-4xl mx-auto text-center">
+    <h1 class="text-4xl md:text-5xl text-green-800 mb-6">Nuestra Historia</h1>
+    <p class="text-lg text-gray-700">Un camino dedicado al bienestar natural y consciente</p>
+  </div>
+</section>
+
+<section class="py-16 px-4 bg-white">
+  <div class="max-w-7xl mx-auto grid md:grid-cols-2 gap-12 items-center">
+    <div class="relative h-[420px] rounded-2xl overflow-hidden shadow-xl">
+      <img class="w-full h-full object-cover"
+           alt="Ingredientes Naturales"
+           src="https://images.unsplash.com/photo-1607721098274-e54cbfab475d?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxuYXR1cmFsJTIwaW5ncmVkaWVudHMlMjBoZXJic3xlbnwxfHx8fDE3NjExODY0NzN8MA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral">
+    </div>
+
+    <div>
+      <h2 class="text-3xl text-green-800 mb-6">¿Quiénes Somos?</h2>
+
+      {% if contenido and contenido.nuestra_historia %}
+        <div class="text-gray-700 space-y-4">{{ contenido.nuestra_historia|linebreaks }}</div>
+      {% else %}
+        <p class="text-gray-700 mb-4">
+          Desde la localidad de Rafael, en pleno contacto con la naturaleza del campo, trabajamos
+          con ingredientes de origen natural, recolectados de forma sostenible y ética.
+        </p>
+        <p class="text-gray-700">
+          Creemos en la sabiduría ancestral y en la ciencia del bienestar para acompañar procesos
+          de equilibrio emocional, físico y energético.
+        </p>
+      {% endif %}
+    </div>
+  </div>
+</section>
+{% endblock %}

@@ -1,0 +1,88 @@
+{% load static %}
+{% with url_name=request.resolver_match.url_name %}
+{% with WHATSAPP_NUMBER="56912345678" %}
+
+<nav class="sticky top-0 z-50 bg-white shadow-sm">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex justify-between items-center h-16">
+
+      <!-- Logo -->
+      <a href="{% url 'home' %}" class="flex items-center gap-3 hover:opacity-80 transition-opacity">
+        <img src="{% static 'img/logo.png' %}" alt="Auka Terapias Naturales" class="h-10 w-auto" />
+      </a>
+
+      <!-- Desktop -->
+      <div class="hidden md:flex items-center gap-8">
+        <a href="{% url 'home' %}"
+           class="transition-colors {% if url_name == 'home' %}text-green-700 font-medium{% else %}text-gray-600 hover:text-green-600{% endif %}">
+          Inicio
+        </a>
+        <a href="{% url 'about' %}"
+           class="transition-colors {% if url_name == 'about' %}text-green-700 font-medium{% else %}text-gray-600 hover:text-green-600{% endif %}">
+          Quiénes Somos
+        </a>
+        <a href="{% url 'catalogo' %}"
+           class="transition-colors {% if url_name == 'catalogo' %}text-green-700 font-medium{% else %}text-gray-600 hover:text-green-600{% endif %}">
+          Catálogo
+        </a>
+
+        <a href="https://wa.me/{{ WHATSAPP_NUMBER }}?text=Hola%20AUKA!%20Me%20gustaría%20consultar%20sobre%20sus%20productos%20naturales"
+           target="_blank" rel="noopener noreferrer"
+           class="inline-flex items-center justify-center rounded-md px-4 py-2 bg-green-600 text-white hover:bg-green-700 transition-colors">
+          Contactar
+        </a>
+
+        <a href="https://instagram.com/aukaterapias"
+           target="_blank" rel="noopener noreferrer"
+           class="p-2 text-gray-600 hover:text-green-600 transition-colors"
+           aria-label="Instagram">
+          <!-- ícono Instagram (simple) -->
+          <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <rect x="3" y="3" width="18" height="18" rx="5"></rect>
+            <circle cx="12" cy="12" r="4"></circle>
+            <circle cx="17.5" cy="6.5" r="1"></circle>
+          </svg>
+        </a>
+      </div>
+
+      <!-- Mobile button -->
+      <button id="menuToggle" class="md:hidden p-2" aria-expanded="false" aria-controls="mobileNav">
+        <svg id="iconOpen" class="w-6 h-6 text-gray-600" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M4 6h16M4 12h16M4 18h16"></path>
+        </svg>
+        <svg id="iconClose" class="w-6 h-6 text-gray-600 hidden" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M6 6l12 12M18 6L6 18"></path>
+        </svg>
+      </button>
+    </div>
+
+    <!-- Mobile menu -->
+    <div id="mobileNav" class="md:hidden hidden pb-4">
+      <div class="flex flex-col gap-3 pt-2">
+        <a class="py-2 text-gray-700 hover:text-green-600" href="{% url 'home' %}">Inicio</a>
+        <a class="py-2 text-gray-700 hover:text-green-600" href="{% url 'about' %}">Quiénes Somos</a>
+        <a class="py-2 text-gray-700 hover:text-green-600" href="{% url 'catalogo' %}">Catálogo</a>
+
+        <a class="inline-flex items-center justify-center rounded-md px-4 py-2 bg-green-600 text-white hover:bg-green-700 transition-colors"
+           href="https://wa.me/{{ WHATSAPP_NUMBER }}?text=Hola%20AUKA!%20Me%20gustaría%20consultar%20sobre%20sus%20productos%20naturales"
+           target="_blank" rel="noopener noreferrer">
+          Contactar
+        </a>
+
+        <a href="https://instagram.com/aukaterapias" target="_blank" rel="noopener noreferrer"
+           class="flex items-center justify-center gap-2 rounded-full py-2 text-gray-600 hover:text-green-600 transition-colors">
+          <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <rect x="3" y="3" width="18" height="18" rx="5"></rect>
+            <circle cx="12" cy="12" r="4"></circle>
+            <circle cx="17.5" cy="6.5" r="1"></circle>
+          </svg>
+          <span>@aukaterapias</span>
+        </a>
+      </div>
+    </div>
+
+  </div>
+</nav>
+
+{% endwith %}
+{% endwith %}
