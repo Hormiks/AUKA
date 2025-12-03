@@ -1,0 +1,106 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}Inicio | AUKA{% endblock %}
+
+{% block content %}
+<header class="site-header">
+  <div class="container nav">
+    <a class="brand" href="#">
+      <span class="brand-mark">AUKA</span>
+    </a>
+
+    <nav class="menu" aria-label="Navegación principal">
+      <a class="menu-link is-active" href="#">Inicio</a>
+      <a class="menu-link" href="#">Quiénes Somos</a>
+      <a class="menu-link" href="#">Catálogo</a>
+      <a class="menu-btn" href="#">Contactar</a>
+    </nav>
+  </div>
+</header>
+
+<main class="hero">
+  <div class="container hero-grid">
+    <section class="hero-copy">
+      <h1>Bienestar Natural para Tu Vida</h1>
+      <p>
+        Descubre el poder sanador de la naturaleza con nuestras terapias y
+        productos 100% naturales. Cada preparación es única y personalizada según
+        tus necesidades.
+      </p>
+
+      <div class="hero-actions">
+        <a class="btn btn-primary" href="#">Ver Productos</a>
+        <a class="btn btn-outline" href="#">Conoce Nuestra Historia</a>
+      </div>
+    </section>
+
+    <section class="hero-media" aria-label="Imagen destacada">
+      <div class="image-card">
+        <!-- ajusta la ruta según tu carpeta static -->
+        <img src="{% static 'img/hero.jpg' %}" alt="Hierbas naturales" />
+      </div>
+    </section>
+  </div>
+</main>
+
+<!-- ✅ SECCIÓN “NUESTROS VALORES” -->
+<section class="values">
+  <div class="container">
+    <header class="values-head">
+      <h2>Nuestros Valores</h2>
+      <p>Trabajamos con conciencia y respeto por la naturaleza y todos los seres vivos</p>
+    </header>
+
+    <div class="values-grid">
+      <article class="value-card">
+        <div class="value-icon" aria-hidden="true">
+          <!-- hoja -->
+          <img width="50" src="https://marketplace.canva.com/ARZ8E/MAFmAUARZ8E/1/tl/canva-natural-leaf-icon.-100%25-naturals-vector-image-MAFmAUARZ8E.png" alt="">
+        </div>
+        <h3>100% Natural</h3>
+        <p>Todos nuestros productos son de origen natural y orgánico</p>
+      </article>
+
+      <article class="value-card">
+        <div class="value-icon" aria-hidden="true">
+          <!-- escudo -->
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+               stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 2 20 6v6c0 5-3.5 9.5-8 10-4.5-.5-8-5-8-10V6l8-4Z"/>
+            <path d="m9 12 2 2 4-5"/>
+          </svg>
+        </div>
+        <h3>Libre de Crueldad</h3>
+        <p>Sin maltrato animal, productos veganos y conscientes</p>
+      </article>
+
+      <article class="value-card">
+        <div class="value-icon" aria-hidden="true">
+          <!-- corazón -->
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+               stroke-linecap="round" stroke-linejoin="round">
+            <path d="M20.8 4.6c-1.6-1.6-4.2-1.6-5.8 0L12 7.6 9 4.6c-1.6-1.6-4.2-1.6-5.8 0s-1.6 4.2 0 5.8l2.1 2.1L12 21l6.7-8.5 2.1-2.1c1.6-1.6 1.6-4.2 0-5.8Z"/>
+          </svg>
+        </div>
+        <h3>Atención Personalizada</h3>
+        <p>Cada producto es preparado especialmente para ti</p>
+      </article>
+
+      <article class="value-card">
+        <div class="value-icon" aria-hidden="true">
+          <!-- camión -->
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+               stroke-linecap="round" stroke-linejoin="round">
+            <path d="M3 7h11v10H3V7Z"/>
+            <path d="M14 10h4l3 3v4h-7v-7Z"/>
+            <path d="M7 17a2 2 0 1 0 0 4 2 2 0 0 0 0-4Z"/>
+            <path d="M18 17a2 2 0 1 0 0 4 2 2 0 0 0 0-4Z"/>
+          </svg>
+        </div>
+        <h3>Envíos Nacionales</h3>
+        <p>Llegamos a todas las regiones de Chile</p>
+      </article>
+    </div>
+  </div>
+</section>
+{% endblock %}

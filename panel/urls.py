@@ -2,6 +2,7 @@ from django.urls import path
 from . import views
 
 urlpatterns = [
+#                                              PANEL ADMINISTRADOR
     # Pág principal del panel
     path('', views.inicio_admin, name='inicio_admin'),
 
@@ -19,5 +20,9 @@ urlpatterns = [
     path('puntos-venta/agregar/', views.agregar_punto_venta, name='agregar_punto_venta'),
     path('puntos-venta/editar/<int:pk>/', views.editar_punto_venta, name='editar_punto_venta'),
     path('puntos-venta/eliminar/<int:pk>/', views.eliminar_punto_venta, name='eliminar_punto_venta'),
+
+
+#Paginas
+
 ]
 
