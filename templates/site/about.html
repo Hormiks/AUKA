@@ -34,6 +34,22 @@
   margin-bottom: 1rem;
 }
 
+.commitment-icon {
+  width: 2rem;
+  height: 2rem;
+  display: inline-block;
+  vertical-align: middle;
+  margin-right: 0.5rem;
+  color: #0f7a3a;
+  flex-shrink: 0;
+}
+
+.commitment-header {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
 .seasonal-notice {
   background: #fef3c7;
   border-left: 4px solid #f59e0b;
@@ -92,7 +108,7 @@
         {% endif %}
       </div>
       <div class="relative h-[400px] rounded-2xl overflow-hidden shadow-xl">
-        <img src="https://images.unsplash.com/photo-1607721098274-e54cbfab475d?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxuYXR1cmFsJTIwaW5ncmVkaWVudHMlMjBoZXJic3xlbnwxfHx8fDE3NjExODY0NzN8MA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral"
+        <img src="{% static 'img/flores.jpg' %}"
              alt="Ingredientes Naturales"
              class="w-full h-full object-cover">
       </div>
@@ -128,7 +144,7 @@
           {% endif %}
         </div>
         <div class="relative h-[300px] rounded-xl overflow-hidden shadow-lg">
-          <img src="https://images.unsplash.com/photo-1758467797350-ace81997bb13?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxuYXR1cmFsJTIwdGhlcmFweSUyMGZsb3dlcnN8ZW58MXx8fHwxNzYxMTk2MzA2fDA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral"
+          <img src="{% static 'img/origen2.jpeg' %}"
                alt="Flores Naturales"
                class="w-full h-full object-cover">
         </div>
@@ -160,20 +176,23 @@
 </section>
 
 <!-- Puntos de Venta Section (reemplaza Principios) -->
-{% if puntos_venta %}
+{% if puntos_venta_about %}
 <section class="py-16 px-4 bg-green-50">
   <div class="max-w-7xl mx-auto">
     <h2 class="text-3xl text-green-800 mb-12 text-center">
       Puntos de Venta
     </h2>
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-      {% for punto in puntos_venta %}
+      {% for punto in puntos_venta_about %}
         <div class="principle-card" {% if punto.link_mapa %}onclick="window.open('{{ punto.link_mapa }}', '_blank')"{% endif %}>
           <svg class="location-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
           </svg>
           <h3 class="text-green-800 mb-2 font-semibold">{{ punto.nombre }}</h3>
+          <span class="inline-block px-2 py-1 text-xs rounded-full mb-2 {% if punto.tipo == 'fijo' %}bg-green-100 text-green-800{% else %}bg-amber-100 text-amber-800{% endif %}">
+            {% if punto.tipo == 'fijo' %}📍 Fijo{% else %}⏰ Temporal{% endif %}
+          </span>
           <p class="text-sm text-gray-600">
             {{ punto.direccion }}
           </p>

@@ -118,6 +118,20 @@
                             </div>
                         </div>
                         
+                        <div class="mb-4">
+                            <label for="{{ form.tipo.id_for_label }}" class="form-label fw-bold">
+                                Tipo de Punto de Venta
+                            </label>
+                            {{ form.tipo }}
+                            <small class="text-muted d-block mt-1">
+                                <strong>Fijo:</strong> Se muestra en el footer de todas las páginas.<br>
+                                <strong>Temporal:</strong> Solo se muestra en la página "Quiénes somos".
+                            </small>
+                            {% if form.tipo.errors %}
+                            <div class="text-danger small mt-1">{{ form.tipo.errors }}</div>
+                            {% endif %}
+                        </div>
+                        
                         <div class="d-flex justify-content-between pt-3 border-top">
                             <a href="{% url 'lista_puntos_venta' %}" class="btn btn-secondary">Volver</a>
                             <button type="submit" class="btn btn-success">Guardar</button>

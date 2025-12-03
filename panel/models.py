@@ -40,6 +40,11 @@ class ContenidoInstitucional(models.Model):
 
 
 class PuntoVenta(models.Model):
+    TIPO_CHOICES = [
+        ('fijo', 'Fijo'),
+        ('temporal', 'Temporal'),
+    ]
+    
     """Lugares donde se venden los productos AUKA."""
     nombre = models.CharField(max_length=150)
     direccion = models.CharField(max_length=255)
@@ -49,6 +54,7 @@ class PuntoVenta(models.Model):
     telefono = models.CharField(max_length=30, blank=True)
     link_mapa = models.URLField(blank=True, help_text="Link a Google Maps (opcional)")
     activo = models.BooleanField(default=True)
+    tipo = models.CharField(max_length=10, choices=TIPO_CHOICES, default='fijo', help_text="Fijo: se muestra en el footer. Temporal: solo en la página 'Quiénes somos'")
 
     def __str__(self):
         return self.nombre

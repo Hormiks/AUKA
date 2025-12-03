@@ -112,7 +112,7 @@ class ContenidoInstitucionalForm(forms.ModelForm):
 class PuntoVentaForm(forms.ModelForm):
     class Meta:
         model = PuntoVenta
-        fields = ['nombre', 'direccion', 'ciudad', 'region', 'horario', 'telefono', 'link_mapa', 'activo']
+        fields = ['nombre', 'direccion', 'ciudad', 'region', 'horario', 'telefono', 'link_mapa', 'activo', 'tipo']
         widgets = {
             'nombre': forms.TextInput(attrs={'class': 'form-control'}),
             'direccion': forms.TextInput(attrs={'class': 'form-control'}),
@@ -122,4 +122,5 @@ class PuntoVentaForm(forms.ModelForm):
             'telefono': forms.TextInput(attrs={'class': 'form-control'}),
             'link_mapa': forms.URLInput(attrs={'class': 'form-control'}),
             'activo': forms.CheckboxInput(attrs={'class': 'form-check-input'}),
+            'tipo': forms.Select(attrs={'class': 'form-control'}),
         }

@@ -37,6 +37,9 @@
                         <span class="badge {% if punto.activo %}bg-success{% else %}bg-danger{% endif %} mb-2">
                             {% if punto.activo %}Activo{% else %}Inactivo{% endif %}
                         </span>
+                        <span class="badge {% if punto.tipo == 'fijo' %}bg-primary{% else %}bg-warning{% endif %} mb-2">
+                            {% if punto.tipo == 'fijo' %}Fijo{% else %}Temporal{% endif %}
+                        </span>
                         <div class="d-flex gap-2">
                             <a href="{% url 'editar_punto_venta' punto.pk %}" class="btn btn-warning btn-sm flex-fill" onclick="event.stopPropagation();">
                                 Editar

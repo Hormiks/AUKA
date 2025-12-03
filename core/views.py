@@ -6,10 +6,12 @@ def home(request):
 
 def about(request):
     contenido = ContenidoInstitucional.objects.order_by("-actualizado").first()
-    puntos_venta = PuntoVenta.objects.filter(activo=True).order_by("nombre")
+    # Mostrar todos los puntos activos (fijos y temporales) en la página about
+    # Usar un nombre diferente para no sobrescribir el context processor del footer
+    puntos_venta_about = PuntoVenta.objects.filter(activo=True).order_by("nombre")
     return render(request, "site/about.html", {
         "contenido": contenido,
-        "puntos_venta": puntos_venta
+        "puntos_venta_about": puntos_venta_about
     })
 
 def catalogo(request):
