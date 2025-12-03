@@ -1,0 +1,96 @@
+{% extends 'base_panel.html' %}
+{% load static %}
+
+{% block content %}
+<div class="container">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h1>{{ categoria.nombre }}</h1>
+        <a href="{% url 'agregar_producto' %}?categoria={{ categoria.id }}" class="btn btn-primary btn-lg">
+            Agregar Servicio
+        </a>
+    </div>
+    
+    <div class="mb-3">
+        <a href="{% url 'mi_panel' %}" class="btn btn-secondary btn-sm">Volver a Categorías</a>
+        <a href="{% url 'inicio_admin' %}" class="btn btn-outline-secondary btn-sm">Volver al Panel</a>
+        <a href="/" class="btn btn-outline-secondary btn-sm" target="_blank">Ver Página Web</a>
+    </div>
+
+    <div class="mb-4">
+        <p class="text-muted">{{ categoria.descripcion }}</p>
+    </div>
+
+    {% if categoria.productos %}
+        <div class="row">
+            {% for producto in categoria.productos %}
+            <div class="col-md-4 mb-4">
+                <div class="card h-100">
+                    {% if producto.imagen %}
+                    <div class="product-image-container">
+                        <img src="{{ producto.imagen.url }}" alt="{{ producto.nombre }}">
+                        {% if producto.temporadas %}
+                        <span class="badge bg-warning badge-positioned">Estacional</span>
+                        {% endif %}
+                    </div>
+                    {% else %}
+                    <div class="product-image-container">
+                        <span class="text-muted">Sin imagen</span>
+                        {% if producto.temporadas %}
+                        <span class="badge bg-warning badge-positioned">Estacional</span>
+                        {% endif %}
+                    </div>
+                    {% endif %}
+                    
+                    <div class="card-body">
+                        <div class="d-flex justify-content-between align-items-start mb-2">
+                            <h5 class="card-title mb-0">{{ producto.nombre }}</h5>
+                            <span class="text-success fw-bold">${{ producto.precio }}</span>
+                        </div>
+                        
+                        <p class="card-text small mb-3">
+                            {{ producto.descripcion|truncatechars:100 }}
+                        </p>
+                        
+                        {% if producto.temporadas %}
+                        <div class="mb-3">
+                            {% for t in producto.temporadas %}
+                            <span class="badge bg-info">{{ t }}</span>
+                            {% endfor %}
+                        </div>
+                        {% endif %}
+                        
+                        <div class="mb-2">
+                            <span class="badge {% if producto.activo %}bg-success{% else %}bg-danger{% endif %}">
+                                {% if producto.activo %}Disponible{% else %}Fuera de temporada{% endif %}
+                            </span>
+                        </div>
+                        
+                        <div class="d-flex gap-2 mt-3">
+                            <a href="{% url 'editar_producto' producto.id %}?categoria={{ categoria.id }}" class="btn btn-warning btn-sm flex-fill">
+                                Editar
+                            </a>
+                            <form method="post" action="{% url 'eliminar_producto' producto.id %}?categoria={{ categoria.id }}" 
+                                  onsubmit="return confirm('¿Seguro que quieres eliminar este servicio?');" 
+                                  class="form-inline">
+                                {% csrf_token %}
+                                <button type="submit" class="btn btn-danger btn-sm w-100">
+                                    Eliminar
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    {% else %}
+        <div class="alert alert-info text-center py-4">
+            <h4 class="mb-3">No hay servicios en esta categoría</h4>
+            <p class="mb-4">Agrega servicios para que aparezcan en esta categoría.</p>
+            <a href="{% url 'agregar_producto' %}?categoria={{ categoria.id }}" class="btn btn-primary btn-lg">
+                Agregar Primer Servicio
+            </a>
+        </div>
+    {% endif %}
+</div>
+{% endblock %}

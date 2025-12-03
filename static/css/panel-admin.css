@@ -1,0 +1,286 @@
+/* Variables de color consistentes con la página */
+:root {
+    --green: #0f7a3a;
+    --green-2: #0b6a31;
+    --green-dark: #0a5d2a;
+    --mint: #eaf7f0;
+    --text: #1f2937;
+    --muted: #4b5563;
+}
+
+/* Reset completo del body */
+body.panel-admin {
+    font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif !important;
+    color: var(--text) !important;
+    background: radial-gradient(1200px 500px at 30% 0%, #eefaf3 0%, #eaf7f0 45%, #e7f5ee 100%) !important;
+    min-height: 100vh !important;
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
+/* Navbar - Selectores muy específicos */
+body.panel-admin nav.navbar.admin-navbar,
+body.panel-admin .navbar.admin-navbar {
+    background: rgba(255, 255, 255, 0.95) !important;
+    backdrop-filter: blur(10px) !important;
+    border-bottom: 1px solid rgba(15, 122, 58, 0.1) !important;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05) !important;
+}
+
+body.panel-admin .admin-navbar.navbar-dark {
+    background: rgba(255, 255, 255, 0.95) !important;
+}
+
+body.panel-admin .admin-navbar .navbar-brand,
+body.panel-admin nav.admin-navbar a.navbar-brand {
+    color: var(--green) !important;
+    font-weight: 700 !important;
+    font-size: 1.25rem !important;
+    letter-spacing: 0.5px !important;
+    text-decoration: none !important;
+}
+
+body.panel-admin .admin-navbar .navbar-brand:hover {
+    color: var(--green-dark) !important;
+}
+
+body.panel-admin .admin-navbar .navbar-text {
+    color: var(--muted) !important;
+    font-weight: 500 !important;
+}
+
+body.panel-admin .admin-navbar .nav-link,
+body.panel-admin nav.admin-navbar a.nav-link {
+    color: var(--muted) !important;
+    font-weight: 600 !important;
+    padding: 0.5rem 1rem !important;
+    border-radius: 999px !important;
+    transition: all 0.2s ease !important;
+    text-decoration: none !important;
+}
+
+body.panel-admin .admin-navbar .nav-link:hover {
+    color: var(--green) !important;
+    background: rgba(15, 122, 58, 0.08) !important;
+}
+
+/* Contenedor principal */
+body.panel-admin .admin-main {
+    padding: 2rem 0 !important;
+    min-height: calc(100vh - 80px) !important;
+}
+
+/* Cards */
+body.panel-admin .card {
+    border: 1px solid rgba(15, 122, 58, 0.1) !important;
+    border-radius: 1rem !important;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05) !important;
+    transition: all 0.3s ease !important;
+    background: white !important;
+}
+
+body.panel-admin .card:hover {
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1) !important;
+    transform: translateY(-2px) !important;
+}
+
+body.panel-admin .card-header {
+    background: linear-gradient(135deg, #f0fdf4 0%, #eaf7f0 100%) !important;
+    border-bottom: 1px solid rgba(15, 122, 58, 0.1) !important;
+    border-radius: 1rem 1rem 0 0 !important;
+    padding: 1.25rem 1.5rem !important;
+}
+
+body.panel-admin .card-header h1,
+body.panel-admin .card-header h2,
+body.panel-admin .card-header h3,
+body.panel-admin .card-header h4,
+body.panel-admin .card-header h5 {
+    color: var(--green) !important;
+    font-weight: 700 !important;
+    margin: 0 !important;
+}
+
+/* Botones */
+body.panel-admin .btn-primary,
+body.panel-admin button.btn-primary {
+    background-color: var(--green) !important;
+    border-color: var(--green) !important;
+    color: white !important;
+    font-weight: 600 !important;
+    padding: 0.5rem 1.5rem !important;
+    border-radius: 0.5rem !important;
+    transition: all 0.2s ease !important;
+}
+
+body.panel-admin .btn-primary:hover,
+body.panel-admin .btn-primary:focus {
+    background-color: var(--green-dark) !important;
+    border-color: var(--green-dark) !important;
+    transform: translateY(-1px) !important;
+    box-shadow: 0 4px 8px rgba(15, 122, 58, 0.2) !important;
+}
+
+body.panel-admin .btn-success {
+    background-color: var(--green) !important;
+    border-color: var(--green) !important;
+    color: white !important;
+}
+
+body.panel-admin .btn-success:hover {
+    background-color: var(--green-dark) !important;
+    border-color: var(--green-dark) !important;
+}
+
+body.panel-admin .btn-outline-success {
+    color: var(--green) !important;
+    border-color: var(--green) !important;
+    background-color: transparent !important;
+}
+
+body.panel-admin .btn-outline-success:hover {
+    background-color: var(--green) !important;
+    border-color: var(--green) !important;
+    color: white !important;
+}
+
+body.panel-admin .btn-warning {
+    background-color: #f59e0b !important;
+    border-color: #f59e0b !important;
+    color: white !important;
+}
+
+body.panel-admin .btn-danger {
+    background-color: #dc2626 !important;
+    border-color: #dc2626 !important;
+    color: white !important;
+}
+
+body.panel-admin .btn-secondary {
+    background-color: var(--muted) !important;
+    border-color: var(--muted) !important;
+    color: white !important;
+}
+
+body.panel-admin .btn-secondary:hover {
+    background-color: #374151 !important;
+    border-color: #374151 !important;
+}
+
+body.panel-admin .btn-info {
+    background-color: #0ea5e9 !important;
+    border-color: #0ea5e9 !important;
+    color: white !important;
+}
+
+body.panel-admin .btn-info:hover {
+    background-color: #0284c7 !important;
+    border-color: #0284c7 !important;
+}
+
+/* Formularios */
+body.panel-admin .form-label {
+    color: var(--text) !important;
+    font-weight: 600 !important;
+    margin-bottom: 0.5rem !important;
+}
+
+body.panel-admin .form-control,
+body.panel-admin .form-select {
+    border: 1px solid rgba(15, 122, 58, 0.2) !important;
+    border-radius: 0.5rem !important;
+    padding: 0.625rem 1rem !important;
+    transition: all 0.2s ease !important;
+}
+
+body.panel-admin .form-control:focus,
+body.panel-admin .form-select:focus {
+    border-color: var(--green) !important;
+    box-shadow: 0 0 0 3px rgba(15, 122, 58, 0.1) !important;
+    outline: none !important;
+}
+
+/* Badges */
+body.panel-admin .badge {
+    padding: 0.375rem 0.75rem !important;
+    border-radius: 0.5rem !important;
+    font-weight: 600 !important;
+}
+
+body.panel-admin .bg-success {
+    background-color: var(--green) !important;
+}
+
+/* Alertas */
+body.panel-admin .alert {
+    border-radius: 0.75rem !important;
+    border: none !important;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05) !important;
+}
+
+body.panel-admin .alert-info {
+    background-color: #e0f2fe !important;
+    color: #0369a1 !important;
+}
+
+body.panel-admin .alert-success {
+    background-color: #f0fdf4 !important;
+    color: var(--green) !important;
+    border-left: 4px solid var(--green) !important;
+}
+
+body.panel-admin .alert-danger {
+    background-color: #fee2e2 !important;
+    color: #991b1b !important;
+}
+
+body.panel-admin .alert-warning {
+    background-color: #fef3c7 !important;
+    color: #92400e !important;
+}
+
+/* Tablas */
+body.panel-admin .table {
+    border-radius: 0.75rem !important;
+    overflow: hidden !important;
+}
+
+body.panel-admin .table thead {
+    background: linear-gradient(135deg, #f0fdf4 0%, #eaf7f0 100%) !important;
+}
+
+body.panel-admin .table thead th {
+    color: var(--green) !important;
+    font-weight: 700 !important;
+    border-bottom: 2px solid rgba(15, 122, 58, 0.1) !important;
+}
+
+/* Links */
+body.panel-admin a {
+    color: var(--green) !important;
+    text-decoration: none !important;
+    transition: color 0.2s ease !important;
+}
+
+body.panel-admin a:hover {
+    color: var(--green-dark) !important;
+}
+
+/* Títulos */
+body.panel-admin h1 {
+    color: var(--green) !important;
+    font-weight: 700 !important;
+}
+
+body.panel-admin h2,
+body.panel-admin h3,
+body.panel-admin h4,
+body.panel-admin h5,
+body.panel-admin h6 {
+    color: var(--text) !important;
+}
+
+/* Container */
+body.panel-admin .container {
+    max-width: 1200px !important;
+}

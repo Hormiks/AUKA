@@ -1,0 +1,75 @@
+<!-- templates/panel/panel.html -->
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container">
+    <h1>Productos AUKA</h1>
+    
+    <a href="{% url 'agregar_producto' %}" class="btn btn-success">
+        ➕ Agregar Nuevo Producto
+    </a>
+    
+    <div class="row mt-4">
+        {% for producto in productos %}
+        <div class="col-md-4 mb-4">
+            <div class="card">
+                <h5 class="card-title text-center mt-2">
+                    <strong>{{ producto.nombre }}</strong>
+                </h5>                
+                {% if producto.imagen %}
+                <img src="{{ producto.imagen.url }}" class="card-img-top" alt="{{ producto.nombre }}" style="height: 200px; object-fit: cover;">
+                {% else %}
+                <div class="card-img-top bg-light d-flex align-items-center justify-content-center" style="height: 200px;">
+                    <span class="text-muted"> Sin imagen</span>
+                </div>
+                {% endif %}
+                
+                <div class="card-body">
+                    <p class="card-text">
+                        <strong>Precio:</strong> ${{ producto.precio }}<br>
+                        <strong>Descripción:</strong> 
+                        {{ producto.descripcion}}<br>
+                        <strong>Temporadas:</strong>
+                        {% if producto.temporadas %}
+                            {% for temp in producto.temporadas %}
+                                <span class="badge bg-info text-dark">{{ temp }}</span>
+                            {% endfor %}
+                        {% else %}
+                            <span class="text-muted">Sin temporada</span>
+                        {% endif %} <br>
+                        <strong>Estado:</strong>
+                        <span class="badge {% if producto.activo %}bg-success{% else %}bg-danger{% endif %}">
+                            {% if producto.activo %} Disponible {% else %} Fuera de temporada{% endif %}
+                        </span>
+                    </p>
+
+                    
+                    <div class="d-flex justify-content-between">
+                        <a href="{% url 'editar_producto' producto.id %}" class="btn btn-warning btn-sm">
+                             Editar
+                        </a>
+                        <form method="post" action="{% url 'eliminar_producto' producto.id %}"
+                            onsubmit="return confirm('¿Seguro que quieres eliminar este producto?');">
+                            {% csrf_token %}
+                            <button type="submit" class="btn btn-danger btn-sm">
+                                 Eliminar
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% empty %}
+        <div class="col-12">
+            <div class="alert alert-info text-center">
+                <h4> Aún no has ingresado productos</h4>
+                <p>Comienza agregando tu primer producto</p>
+                <a href="{% url 'agregar_producto' %}" class="btn btn-primary">
+                    Agregar Primer Producto
+                </a>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

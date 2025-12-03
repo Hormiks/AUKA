@@ -6,11 +6,12 @@ urlpatterns = [
     # Pág principal del panel
     path('', views.inicio_admin, name='inicio_admin'),
 
-    # productos
+    # productos - IMPORTANTE: Las URLs más específicas deben ir ANTES de las genéricas
     path('catalogo/', views.mi_panel, name='mi_panel'),
-    path('catalogo/agregar/', views.agregar_producto, name='agregar_producto'),
+    path('catalogo/agregar/', views.agregar_producto, name='agregar_producto'),  # ← MOVER ESTA ANTES
     path('catalogo/editar/<int:producto_id>/', views.editar_producto, name='editar_producto'),
     path('catalogo/eliminar/<int:producto_id>/', views.eliminar_producto, name='eliminar_producto'),
+    path('catalogo/<str:categoria_id>/', views.categoria_servicios, name='categoria_servicios'),  # ← ESTA VA AL FINAL
 
     # Contenido institucional (Quiénes somos)
     path('institucional/', views.editar_contenido_institucional, name='editar_contenido_institucional'),

@@ -1,37 +1,230 @@
 {% extends "site_base.html" %}
+{% load static %}
 {% block title %}Quiénes Somos | AUKA{% endblock %}
 
+{% block extra_head %}
+<style>
+.principle-card {
+  background: white;
+  border: 1px solid #bbf7d0;
+  border-radius: 1rem;
+  padding: 1.5rem;
+  text-align: center;
+  transition: all 0.3s;
+  cursor: pointer;
+}
+
+.principle-card:hover {
+  box-shadow: 0 10px 25px rgba(0,0,0,.1);
+  transform: translateY(-2px);
+}
+
+.principle-icon {
+  width: 3rem;
+  height: 3rem;
+  margin: 0 auto 1rem;
+  color: #0f7a3a;
+}
+
+.commitment-card {
+  background: white;
+  border: 1px solid #bbf7d0;
+  border-radius: 0.75rem;
+  padding: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+.seasonal-notice {
+  background: #fef3c7;
+  border-left: 4px solid #f59e0b;
+  padding: 1.5rem;
+  border-radius: 0 0.5rem 0.5rem 0;
+}
+
+.location-icon {
+  width: 3rem;
+  height: 3rem;
+  margin: 0 auto 1rem;
+  color: #0f7a3a;
+}
+</style>
+{% endblock %}
+
 {% block content %}
+<!-- Hero Section -->
 <section class="bg-gradient-to-br from-green-50 to-emerald-50 py-20 px-4">
   <div class="max-w-4xl mx-auto text-center">
-    <h1 class="text-4xl md:text-5xl text-green-800 mb-6">Nuestra Historia</h1>
-    <p class="text-lg text-gray-700">Un camino dedicado al bienestar natural y consciente</p>
+    <h1 class="text-4xl md:text-5xl text-green-800 mb-6">
+      Nuestra Historia
+    </h1>
+    <p class="text-lg text-gray-700">
+      Un camino dedicado al bienestar natural y consciente
+    </p>
   </div>
 </section>
 
+<!-- Story Section -->
 <section class="py-16 px-4 bg-white">
-  <div class="max-w-7xl mx-auto grid md:grid-cols-2 gap-12 items-center">
-    <div class="relative h-[420px] rounded-2xl overflow-hidden shadow-xl">
-      <img class="w-full h-full object-cover"
-           alt="Ingredientes Naturales"
-           src="https://images.unsplash.com/photo-1607721098274-e54cbfab475d?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxuYXR1cmFsJTIwaW5ncmVkaWVudHMlMjBoZXJic3xlbnwxfHx8fDE3NjExODY0NzN8MA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral">
+  <div class="max-w-7xl mx-auto">
+    <div class="grid md:grid-cols-2 gap-12 items-center mb-16">
+      <div>
+        <h2 class="text-3xl text-green-800 mb-6">¿Quiénes Somos?</h2>
+        {% if contenido and contenido.nuestra_historia %}
+          <div class="text-gray-700 space-y-4">{{ contenido.nuestra_historia|linebreaks }}</div>
+        {% else %}
+          <p class="text-gray-700 mb-4">
+            Auka nace del amor profundo por la naturaleza y el deseo de compartir 
+            sus bondades sanadoras. Somos un emprendimiento dedicado a las 
+            terapias naturales y productos elaborados con el corazón, desde la tranquilidad 
+            del campo en la localidad de Rafael.
+          </p>
+          <p class="text-gray-700 mb-4">
+            Nuestro nombre, Auka, proviene del mapudungun y significa "rebelde" o 
+            "salvaje", en honor a la naturaleza libre y poderosa que nos inspira cada día. 
+            Vivir en un sector rural nos da acceso directo a los recursos naturales del campo, 
+            lo que aporta autenticidad y conexión genuina con lo natural.
+          </p>
+          <p class="text-gray-700">
+            Cada producto que creamos lleva consigo años de estudio en terapias naturales, 
+            fitoterapia, saberes ancestrales y medicina natural. Trabajamos con dedicación para ofrecerte 
+            lo mejor de la naturaleza en cada preparación artesanal.
+          </p>
+        {% endif %}
+      </div>
+      <div class="relative h-[400px] rounded-2xl overflow-hidden shadow-xl">
+        <img src="https://images.unsplash.com/photo-1607721098274-e54cbfab475d?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxuYXR1cmFsJTIwaW5ncmVkaWVudHMlMjBoZXJic3xlbnwxfHx8fDE3NjExODY0NzN8MA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral"
+             alt="Ingredientes Naturales"
+             class="w-full h-full object-cover">
+      </div>
     </div>
 
-    <div>
-      <h2 class="text-3xl text-green-800 mb-6">¿Quiénes Somos?</h2>
+    <!-- Origin Section -->
+    <div class="bg-green-50 rounded-2xl p-8 md:p-12 mb-16">
+      <h2 class="text-3xl text-green-800 mb-8 text-center">
+        El Origen de Nuestros Productos
+      </h2>
+      <div class="grid md:grid-cols-2 gap-8 items-center">
+        <div>
+          <h3 class="text-xl text-green-700 mb-4 font-semibold">De la Tierra a Tus Manos</h3>
+          {% if contenido and contenido.origen_productos %}
+            <div class="text-gray-700 space-y-4">{{ contenido.origen_productos|linebreaks }}</div>
+          {% else %}
+            <p class="text-gray-700 mb-4">
+              Desde la localidad de Rafael, en pleno contacto con la naturaleza del campo, trabajamos 
+              con recursos locales y cultivamos plantas medicinales de forma sostenible. 
+              Cada hierba, cada flor y cada ingrediente es seleccionado en su momento óptimo de cosecha.
+            </p>
+            <p class="text-gray-700 mb-4">
+              Muchos de nuestros ingredientes provienen de zonas nativas de Chile y de nuestro 
+              propio entorno rural, donde crecen de forma silvestre respetando sus ciclos naturales. 
+              También cultivamos especies en nuestro jardín medicinal, conectando directamente 
+              con la tierra y los saberes ancestrales.
+            </p>
+            <p class="text-gray-700">
+              Esta conexión directa con la fuente, viviendo en el campo y utilizando los recursos 
+              naturales que nos rodean, nos permite garantizar la pureza, autenticidad, frescura 
+              y máxima potencia terapéutica de cada componente.
+            </p>
+          {% endif %}
+        </div>
+        <div class="relative h-[300px] rounded-xl overflow-hidden shadow-lg">
+          <img src="https://images.unsplash.com/photo-1758467797350-ace81997bb13?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxuYXR1cmFsJTIwdGhlcmFweSUyMGZsb3dlcnN8ZW58MXx8fHwxNzYxMTk2MzA2fDA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral"
+               alt="Flores Naturales"
+               class="w-full h-full object-cover">
+        </div>
+      </div>
+    </div>
 
-      {% if contenido and contenido.nuestra_historia %}
-        <div class="text-gray-700 space-y-4">{{ contenido.nuestra_historia|linebreaks }}</div>
-      {% else %}
-        <p class="text-gray-700 mb-4">
-          Desde la localidad de Rafael, en pleno contacto con la naturaleza del campo, trabajamos
-          con ingredientes de origen natural, recolectados de forma sostenible y ética.
+    <!-- Seasonal Production -->
+    <div class="mb-16">
+      <h2 class="text-3xl text-green-800 mb-8 text-center">
+        Producción Según las Estaciones
+      </h2>
+      <div class="max-w-3xl mx-auto">
+        <p class="text-gray-700 mb-6 text-center">
+          La naturaleza tiene sus propios tiempos, y nosotros los respetamos. 
+          Nuestros productos no están disponibles de forma masiva porque dependemos 
+          de los ciclos estacionales y el tiempo de maduración de cada planta.
         </p>
+        <div class="seasonal-notice">
+          <p class="text-amber-900">
+            <strong>Por esta razón, trabajamos con un sistema de atención personalizada.</strong> 
+            Cuando nos contactas para solicitar un producto, evaluamos su disponibilidad 
+            según la estación actual y te informamos sobre los tiempos de preparación. 
+            Así garantizamos que recibas productos frescos y de la más alta calidad.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Puntos de Venta Section (reemplaza Principios) -->
+{% if puntos_venta %}
+<section class="py-16 px-4 bg-green-50">
+  <div class="max-w-7xl mx-auto">
+    <h2 class="text-3xl text-green-800 mb-12 text-center">
+      Puntos de Venta
+    </h2>
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+      {% for punto in puntos_venta %}
+        <div class="principle-card" {% if punto.link_mapa %}onclick="window.open('{{ punto.link_mapa }}', '_blank')"{% endif %}>
+          <svg class="location-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
+          </svg>
+          <h3 class="text-green-800 mb-2 font-semibold">{{ punto.nombre }}</h3>
+          <p class="text-sm text-gray-600">
+            {{ punto.direccion }}
+          </p>
+          {% if punto.link_mapa %}
+            <p class="text-xs text-green-600 mt-2">Click para ver en mapa</p>
+          {% endif %}
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+{% endif %}
+
+<!-- Certifications Section -->
+<section class="py-16 px-4 bg-white">
+  <div class="max-w-4xl mx-auto">
+    <h2 class="text-3xl text-green-800 mb-8 text-center">
+      Nuestro Compromiso
+    </h2>
+    <div class="space-y-6">
+      <div class="commitment-card">
+        <h3 class="text-green-800 mb-3 font-semibold text-lg">🌿 100% Natural y Orgánico</h3>
         <p class="text-gray-700">
-          Creemos en la sabiduría ancestral y en la ciencia del bienestar para acompañar procesos
-          de equilibrio emocional, físico y energético.
+          No utilizamos químicos sintéticos, conservantes artificiales ni ingredientes 
+          procesados. Todo lo que utilizamos proviene directamente de la naturaleza.
         </p>
-      {% endif %}
+      </div>
+
+      <div class="commitment-card">
+        <h3 class="text-green-800 mb-3 font-semibold text-lg">💯 Libre de Maltrato Animal</h3>
+        <p class="text-gray-700">
+          Todos nuestros productos son veganos y cruelty-free. No testeamos en animales 
+          ni utilizamos ningún ingrediente de origen animal.
+        </p>
+      </div>
+
+      <div class="commitment-card">
+        <h3 class="text-green-800 mb-3 font-semibold text-lg">🌍 Producción Sostenible</h3>
+        <p class="text-gray-700">
+          Trabajamos con prácticas de recolección sostenible que respetan los ecosistemas 
+          y permiten la regeneración natural de las especies.
+        </p>
+      </div>
+
+      <div class="commitment-card">
+        <h3 class="text-green-800 mb-3 font-semibold text-lg">📍 Envíos a Todas las Regiones</h3>
+        <p class="text-gray-700">
+          Llevamos nuestros productos a todo Chile, empaquetados con materiales 
+          eco-friendly y el mismo cuidado con el que los elaboramos.
+        </p>
+      </div>
     </div>
   </div>
 </section>

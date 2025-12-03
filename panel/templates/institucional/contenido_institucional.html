@@ -1,29 +1,86 @@
-{% extends 'base.html' %}
+{% extends 'base_panel.html' %}
+{% load static %}
 
 {% block content %}
 <div class="container">
-    <h1 class="mb-4"> Contenido institucional - “Quiénes somos”</h1>
-
+    <div class="mb-3">
+        <a href="{% url 'inicio_admin' %}" class="btn btn-secondary btn-sm">Volver al Panel</a>
+        <a href="/quienes-somos/" class="btn btn-outline-secondary btn-sm" target="_blank">Ver en Página Web</a>
+    </div>
+    
+    <div class="row">
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-header">
+                    <h2>Editar Contenido - "Quiénes Somos"</h2>
+                </div>
+                <div class="card-body">
     <form method="post">
         {% csrf_token %}
 
         <div class="mb-3">
-            <label class="form-label"><strong>Nuestra historia</strong></label>
+                            <label for="{{ form.nuestra_historia.id_for_label }}" class="form-label">
+                                <strong>Nuestra Historia</strong>
+                            </label>
+                            <small class="text-muted d-block mb-2">Este texto aparecerá en la sección "¿Quiénes Somos?"</small>
             {{ form.nuestra_historia }}
+                            {% if form.nuestra_historia.errors %}
+                            <div class="text-danger">{{ form.nuestra_historia.errors }}</div>
+                            {% endif %}
         </div>
 
-        <div class="mb-3">
-            <label class="form-label"><strong>Nuestros valores</strong></label>
-            {{ form.nuestros_valores }}
-        </div>
+
 
         <div class="mb-3">
-            <label class="form-label"><strong>Origen de nuestros productos</strong></label>
+                            <label for="{{ form.origen_productos.id_for_label }}" class="form-label">
+                                <strong>Origen de Nuestros Productos</strong>
+                            </label>
+                            <small class="text-muted d-block mb-2">Información sobre el origen y proceso de los productos</small>
             {{ form.origen_productos }}
+                            {% if form.origen_productos.errors %}
+                            <div class="text-danger">{{ form.origen_productos.errors }}</div>
+                            {% endif %}
         </div>
 
-        <button type="submit" class="btn btn-primary">💾 Guardar cambios</button>
-        <a href="{% url 'inicio_admin' %}" class="btn btn-secondary">⬅ Volver al panel</a>
+                        <div class="d-flex justify-content-between">
+                            <a href="{% url 'inicio_admin' %}" class="btn btn-secondary">Volver al Panel</a>
+                            <button type="submit" class="btn btn-primary">Guardar Cambios</button>
+                        </div>
     </form>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-header bg-light">
+                    <h3>Vista Previa</h3>
+                </div>
+                <div class="card-body bg-light">
+                    <div style="background: linear-gradient(135deg, #f0fdf4 0%, #e5f7ed 100%); padding: 2rem; border-radius: 0.5rem; margin-bottom: 1.5rem;">
+                        <h2 class="text-success mb-3">Nuestra Historia</h2>
+                        <div class="text-muted">
+                            {% if contenido and contenido.nuestra_historia %}
+                                {{ contenido.nuestra_historia|linebreaks }}
+                            {% else %}
+                                <p class="text-muted">(El contenido aparecerá aquí)</p>
+                            {% endif %}
+                        </div>
+                    </div>
+                    
+                    <div style="background: #f0fdf4; padding: 1.5rem; border-radius: 0.5rem; margin-bottom: 1.5rem;">
+                        <h3 class="text-success mb-3">El Origen de Nuestros Productos</h3>
+                        <div class="text-muted">
+                            {% if contenido and contenido.origen_productos %}
+                                {{ contenido.origen_productos|linebreaks }}
+                            {% else %}
+                                <p class="text-muted">(El contenido aparecerá aquí)</p>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 {% endblock %}

@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container">
+    <h1 class="mb-4"> Puntos de venta</h1>
+
+    <a href="{% url 'agregar_punto_venta' %}" class="btn btn-success mb-3">
+         Agregar punto de venta
+    </a>
+
+    {% if puntos %}
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Nombre</th>
+                    <th>Dirección</th>
+                    <th>Ciudad</th>
+                    <th>Región</th>
+                    <th>Estado</th>
+                    <th style="width: 180px;"></th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for punto in puntos %}
+                <tr>
+                    <td>{{ punto.nombre }}</td>
+                    <td>{{ punto.direccion }}</td>
+                    <td>{{ punto.ciudad }}</td>
+                    <td>{{ punto.region }}</td>
+                    <td>
+                        {% if punto.activo %}
+                            <span class="badge bg-success">Activo</span>
+                        {% else %}
+                            <span class="badge bg-secondary">Inactivo</span>
+                        {% endif %}
+                    </td>
+                    <td>
+                        <a href="{% url 'editar_punto_venta' punto.pk %}" class="btn btn-warning btn-sm">Editar</a>
+                        <form method="post" action="{% url 'eliminar_punto_venta' punto.pk %}"
+                              style="display:inline-block"
+                              onsubmit="return confirm('¿Seguro que quieres eliminar este punto de venta?');">
+                            {% csrf_token %}
+                            <button type="submit" class="btn btn-danger btn-sm">Eliminar</button>
+                        </form>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+        <p class="text-muted">Todavía no has registrado puntos de venta.</p>
+    {% endif %}
+</div>
+{% endblock %}

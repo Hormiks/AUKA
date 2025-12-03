@@ -1,0 +1,91 @@
+<!-- templates/panel/agregar_producto.html -->
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card">
+                <div class="card-header">
+                    <h2>➕ Agregar Nuevo Producto</h2>
+                </div>
+                <div class="card-body">
+                    <form method="post" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        
+                        {% if form.errors %}
+                        <div class="alert alert-danger">
+                             Por favor corrige los errores below
+                        </div>
+                        {% endif %}
+                        
+                        <div class="mb-3">
+                            <label for="{{ form.nombre.id_for_label }}" class="form-label">Nombre del Producto</label>
+                            {{ form.nombre }}
+                            {% if form.nombre.errors %}
+                            <div class="text-danger">{{ form.nombre.errors }}</div>
+                            {% endif %}
+                        </div>
+                        
+                        <div class="mb-3">
+                            <label for="{{ form.precio.id_for_label }}" class="form-label">Precio</label>
+                            {{ form.precio }}
+                            {% if form.precio.errors %}
+                            <div class="text-danger">{{ form.precio.errors }}</div>
+                            {% endif %}
+                        </div>
+                        <div class="mb-3">
+                            <label for="{{ form.precio.id_for_label }}" class="form-label">Temporadas</label>
+                                {% for checkbox in form.temporadas %}
+                                <div class="form-check">
+                                    {{ checkbox.tag }}
+                                    <label class="form-check-label">
+                                        {{ checkbox.choice_label }}
+                                    </label>
+                                    </div>
+                                {% endfor %}
+                                {% if form.temporadas.errors %}
+                                    <div class="text-danger">
+                                        {{ form.temporadas.errors }}
+                                    </div>
+                                {% endif %}
+                        </div>
+
+                        
+                        <div class="mb-3">
+                            <label for="{{ form.descripcion.id_for_label }}" class="form-label">Descripción</label>
+                            {{ form.descripcion }}
+                            {% if form.descripcion.errors %}
+                            <div class="text-danger">{{ form.descripcion.errors }}</div>
+                            {% endif %}
+                        </div>
+                        
+                        <div class="mb-3">
+                            <label for="{{ form.imagen.id_for_label }}" class="form-label">Imagen del Producto</label>
+                            {{ form.imagen }}
+                            {% if form.imagen.errors %}
+                            <div class="text-danger">{{ form.imagen.errors }}</div>
+                            {% endif %}
+                        </div>
+                        <div class="mb-3">
+                            <label for="{{ form.activo.id_for_label }}" class="form-label">Estado</label>
+                            <div class="form-check">
+                                {{ form.activo }}
+                                <label class="form-check-label" for="{{ form.activo.id_for_label }}">
+                                    Producto activo (visible en la tienda)
+                                </label>
+                            </div>
+                        </div>
+                        <div class="d-flex justify-content-between">
+                            <a href="{% url 'mi_panel' %}" class="btn btn-secondary">← Volver</a>
+                            <button type="submit" class="btn btn-success"> Guardar Producto</button>
+                        </div>
+                        
+
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,53 @@
+<article class="product-card rounded-2xl border border-green-100 overflow-hidden shadow-sm bg-white" 
+         data-product-id="{{ producto.id }}" 
+         data-product-name="{{ producto.nombre }}"
+         data-product-category="{% if categoria %}{{ categoria }}{% else %}General{% endif %}"
+         onclick="toggleProduct('{{ producto.id }}', '{{ producto.nombre|escapejs }}', '{% if categoria %}{{ categoria|escapejs }}{% else %}General{% endif %}')">
+  {% if producto.imagen %}
+    <div class="product-image-container">
+      <img src="{{ producto.imagen.url }}" alt="{{ producto.nombre }}">
+      {% if producto.temporadas %}
+        <span class="badge-estacional badge-positioned">Estacional</span>
+      {% endif %}
+    </div>
+  {% else %}
+    <div class="product-image-container">
+      <span class="text-green-700" style="font-size: 0.875rem;">Sin imagen</span>
+      {% if producto.temporadas %}
+        <span class="badge-estacional badge-positioned">Estacional</span>
+      {% endif %}
+    </div>
+  {% endif %}
+
+  <div class="p-4">
+    <div class="flex items-start justify-between gap-2 mb-2">
+      <h2 class="text-green-800 font-medium text-base">{{ producto.nombre }}</h2>
+      <span class="text-green-700 font-semibold whitespace-nowrap text-sm">
+        {% if producto.precio %}
+          ${{ producto.precio }}
+        {% else %}
+          Consultar
+        {% endif %}
+      </span>
+    </div>
+
+    <p class="text-xs text-gray-600 mb-3">
+      {{ producto.descripcion|truncatechars:100 }}
+    </p>
+
+    {% if producto.temporadas %}
+      <div class="mb-3 flex flex-wrap gap-1.5">
+        {% for t in producto.temporadas %}
+          <span class="text-xs rounded-full bg-green-50 border border-green-100 px-2 py-0.5 text-green-700">
+            {{ t }}
+          </span>
+        {% endfor %}
+      </div>
+    {% endif %}
+
+    <button onclick="event.stopPropagation(); toggleProduct('{{ producto.id }}', '{{ producto.nombre|escapejs }}', '{% if categoria %}{{ categoria|escapejs }}{% else %}General{% endif %}')" 
+            class="product-btn w-full py-1.5 px-3 rounded-md border-2 border-green-600 text-green-700 hover:bg-green-50 transition-colors font-medium text-sm">
+      <span class="product-btn-text">Seleccionar</span>
+    </button>
+  </div>
+</article>

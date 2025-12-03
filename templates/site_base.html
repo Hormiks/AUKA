@@ -6,8 +6,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>{% block title %}AUKA{% endblock %}</title>
 
-  <!-- Tailwind compilado desde el export de Figma -->
+  <!-- Tailwind / CSS global del prototipo -->
   <link rel="stylesheet" href="{% static 'css/figma-tailwind.css' %}">
+  {% block extra_head %}{% endblock %}
 </head>
 
 <body class="min-h-screen flex flex-col">
@@ -18,26 +19,5 @@
   </main>
 
   {% include "site/partials/footer.html" %}
-
-  <script>
-    // Menú móvil (sin frameworks)
-    (function () {
-      const btn = document.getElementById('menuToggle');
-      const menu = document.getElementById('mobileNav');
-      const openIcon = document.getElementById('iconOpen');
-      const closeIcon = document.getElementById('iconClose');
-      if (!btn || !menu) return;
-
-      btn.addEventListener('click', () => {
-        const isOpen = !menu.classList.contains('hidden');
-        menu.classList.toggle('hidden', isOpen);
-        btn.setAttribute('aria-expanded', String(!isOpen));
-        if (openIcon && closeIcon) {
-          openIcon.classList.toggle('hidden', !isOpen);
-          closeIcon.classList.toggle('hidden', isOpen);
-        }
-      });
-    })();
-  </script>
 </body>
 </html>
