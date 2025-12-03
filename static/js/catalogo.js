@@ -57,6 +57,7 @@ function initializeTabs() {
 // Toggle producto
 function toggleProduct(productId, productName, category = 'General') {
     const index = selectedProducts.findIndex(p => p.id === productId);
+    // Buscar en todas las pestañas, no solo en las visibles
     const card = document.querySelector(`[data-product-id="${productId}"]`);
     const button = card?.querySelector('.product-btn');
     const buttonText = button?.querySelector('.product-btn-text');
@@ -64,12 +65,17 @@ function toggleProduct(productId, productName, category = 'General') {
     if (index > -1) {
         // Deseleccionar
         selectedProducts.splice(index, 1);
-        card?.classList.remove('selected');
-        if (buttonText) buttonText.textContent = 'Seleccionar';
-        if (button) {
-            button.classList.remove('bg-green-600', 'text-white');
-            button.classList.add('border-green-600', 'text-green-700');
-        }
+        // Actualizar todas las tarjetas con el mismo ID (en todas las pestañas)
+        document.querySelectorAll(`[data-product-id="${productId}"]`).forEach(c => {
+            c.classList.remove('selected');
+            const btn = c.querySelector('.product-btn');
+            const btnText = btn?.querySelector('.product-btn-text');
+            if (btnText) btnText.textContent = 'Seleccionar';
+            if (btn) {
+                btn.classList.remove('bg-green-600', 'text-white');
+                btn.classList.add('border-green-600', 'text-green-700');
+            }
+        });
     } else {
         // Seleccionar
         selectedProducts.push({ 
@@ -77,12 +83,17 @@ function toggleProduct(productId, productName, category = 'General') {
             name: productName,
             category: category
         });
-        card?.classList.add('selected');
-        if (buttonText) buttonText.textContent = 'Seleccionado';
-        if (button) {
-            button.classList.add('bg-green-600', 'text-white');
-            button.classList.remove('border-green-600', 'text-green-700');
-        }
+        // Actualizar todas las tarjetas con el mismo ID (en todas las pestañas)
+        document.querySelectorAll(`[data-product-id="${productId}"]`).forEach(c => {
+            c.classList.add('selected');
+            const btn = c.querySelector('.product-btn');
+            const btnText = btn?.querySelector('.product-btn-text');
+            if (btnText) btnText.textContent = 'Seleccionado';
+            if (btn) {
+                btn.classList.add('bg-green-600', 'text-white');
+                btn.classList.remove('border-green-600', 'text-green-700');
+            }
+        });
     }
     
     saveSelectedProducts();
@@ -123,10 +134,9 @@ function loadSelectedProducts() {
         const saved = localStorage.getItem('aukaSelectedProducts');
         if (saved) {
             selectedProducts = JSON.parse(saved);
-            // Restaurar estado visual
+            // Restaurar estado visual en todas las pestañas
             selectedProducts.forEach(product => {
-                const card = document.querySelector(`[data-product-id="${product.id}"]`);
-                if (card) {
+                document.querySelectorAll(`[data-product-id="${product.id}"]`).forEach(card => {
                     card.classList.add('selected');
                     const button = card.querySelector('.product-btn');
                     const buttonText = button?.querySelector('.product-btn-text');
@@ -135,7 +145,7 @@ function loadSelectedProducts() {
                         button.classList.add('bg-green-600', 'text-white');
                         button.classList.remove('border-green-600', 'text-green-700');
                     }
-                }
+                });
             });
         }
     } catch (e) {

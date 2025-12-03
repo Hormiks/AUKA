@@ -446,7 +446,7 @@
           </div>
           <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {% for producto in categoria.productos %}
-              {% include "site/partials/producto_card.html" with producto=producto %}
+              {% include "site/partials/producto_card.html" with producto=producto categoria=categoria.nombre %}
             {% endfor %}
           </div>
         </div>
