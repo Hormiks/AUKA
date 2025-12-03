@@ -13,14 +13,14 @@ class Producto(models.Model):
         ("primavera", "Primavera"),
     ]
 
-    usuario = models.ForeignKey(User, on_delete=models.CASCADE)  
+    usuario = models.ForeignKey(User, on_delete=models.CASCADE)
     nombre = models.CharField(max_length=100)
     precio = models.IntegerField()  # Cambiado de DecimalField a IntegerField
     descripcion = models.TextField()
     imagen = models.ImageField(upload_to='productos/')
     activo = models.BooleanField(default=True)
-    temporadas = MultiSelectField(choices=TEMPORADAS, blank=True)
-    
+    temporadas = MultiSelectField(max_length=50, choices=TEMPORADAS, blank=True)
+
     def __str__(self):
         return self.nombre
 
