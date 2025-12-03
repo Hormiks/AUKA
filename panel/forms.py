@@ -23,6 +23,10 @@ class ProductoForm(forms.ModelForm):
         super().__init__(*args, **kwargs)
         if categoria_id:
             self.fields['categoria_id'].initial = categoria_id
+            # Si no es fitoterapia, excluir el campo temporadas del formulario
+            if categoria_id != 'fitoterapia':
+                if 'temporadas' in self.fields:
+                    del self.fields['temporadas']
     
     def clean(self):
         cleaned_data = super().clean()
