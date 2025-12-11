@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from panel.models import Producto, ContenidoInstitucional, PuntoVenta
 
 def home(request):
@@ -74,4 +74,10 @@ def catalogo(request):
     return render(request, "site/catalogo.html", {
         "productos": productos,
         "categorias": categorias
+    })
+
+def producto_detalle(request, producto_id):
+    producto = get_object_or_404(Producto, id=producto_id, activo=True)
+    return render(request, "site/producto_detalle.html", {
+        "producto": producto
     })

@@ -45,9 +45,16 @@
       </div>
     {% endif %}
 
-    <button onclick="event.stopPropagation(); toggleProduct('{{ producto.id }}', '{{ producto.nombre|escapejs }}', '{% if categoria %}{{ categoria|escapejs }}{% else %}General{% endif %}')" 
-            class="product-btn w-full py-1.5 px-3 rounded-md border-2 border-green-600 text-green-700 hover:bg-green-50 transition-colors font-medium text-sm">
-      <span class="product-btn-text">Seleccionar</span>
-    </button>
+    <div class="flex gap-2">
+      <a href="{% url 'producto_detalle' producto.id %}" 
+         onclick="event.stopPropagation();"
+         class="flex-1 py-1.5 px-3 rounded-md bg-green-600 text-white hover:bg-green-700 transition-colors font-medium text-sm text-center">
+        Ver más
+      </a>
+      <button onclick="event.stopPropagation(); toggleProduct('{{ producto.id }}', '{{ producto.nombre|escapejs }}', '{% if categoria %}{{ categoria|escapejs }}{% else %}General{% endif %}')" 
+              class="flex-1 py-1.5 px-3 rounded-md border-2 border-green-600 text-green-700 hover:bg-green-50 transition-colors font-medium text-sm">
+        <span class="product-btn-text">Seleccionar</span>
+      </button>
+    </div>
   </div>
 </article>

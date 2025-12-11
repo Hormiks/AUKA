@@ -19,5 +19,46 @@
   </main>
 
   {% include "site/partials/footer.html" %}
+
+  <script>
+    // Toggle del menú móvil
+    document.addEventListener('DOMContentLoaded', function() {
+      const menuToggle = document.getElementById('menuToggle');
+      const mobileNav = document.getElementById('mobileNav');
+      const iconOpen = document.getElementById('iconOpen');
+      const iconClose = document.getElementById('iconClose');
+
+      if (menuToggle && mobileNav) {
+        menuToggle.addEventListener('click', function() {
+          const isHidden = mobileNav.classList.contains('hidden');
+          
+          if (isHidden) {
+            // Abrir menú
+            mobileNav.classList.remove('hidden');
+            iconOpen.classList.add('hidden');
+            iconClose.classList.remove('hidden');
+            menuToggle.setAttribute('aria-expanded', 'true');
+          } else {
+            // Cerrar menú
+            mobileNav.classList.add('hidden');
+            iconOpen.classList.remove('hidden');
+            iconClose.classList.add('hidden');
+            menuToggle.setAttribute('aria-expanded', 'false');
+          }
+        });
+
+        // Cerrar menú al hacer clic en un enlace (opcional, mejora UX en móvil)
+        const mobileLinks = mobileNav.querySelectorAll('a');
+        mobileLinks.forEach(link => {
+          link.addEventListener('click', function() {
+            mobileNav.classList.add('hidden');
+            iconOpen.classList.remove('hidden');
+            iconClose.classList.add('hidden');
+            menuToggle.setAttribute('aria-expanded', 'false');
+          });
+        });
+      }
+    });
+  </script>
 </body>
 </html>

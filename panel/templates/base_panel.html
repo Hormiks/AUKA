@@ -873,7 +873,10 @@
                 <span class="navbar-text">
                     Bienvenida, <strong>{{ user.username }}</strong>
                 </span>
-                <a class="nav-link" href="{% url 'logout' %}">Cerrar Sesión</a>
+                <form method="post" action="{% url 'logout' %}" style="display: inline;">
+                    {% csrf_token %}
+                    <button type="submit" class="nav-link" style="background: none; border: none; padding: 0; cursor: pointer; font-weight: 500; color: rgba(255, 255, 255, 0.9); transition: color 0.2s ease;">Cerrar Sesión</button>
+                </form>
             </div>
         </div>
     </nav>

@@ -23,9 +23,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-61f-(pth-#ht5hmx&k%pe0fvcphp=lf%mc208mob+gg*33p3tv'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
-ALLOWED_HOSTS = ['Hyedraxalys.pythonanywhere.com']
+ALLOWED_HOSTS = ['Hyedraxalys.pythonanywhere.com', 'localhost', '127.0.0.1']
 
 
 # Application definition
@@ -128,5 +128,6 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+LOGIN_URL = '/accounts/login/'
 LOGIN_REDIRECT_URL = '/panel/'
 LOGOUT_REDIRECT_URL = '/accounts/login/'
